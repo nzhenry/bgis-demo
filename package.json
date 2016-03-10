@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "bgis-demo",
+  "scripts": {
+    "start": "gulp start",
+    "test": "gulp test"
+  },
+  "devDependencies": {
+    "connect": "^3.4.1",
+    "gulp": "^3.9.1",
+    "gulp-webdriver": "^1.0.3",
+    "mocha": "^2.4.5",
+    "serve-static": "^1.10.2",
+    "spec": "^1.0.1",
+    "wdio-dot-reporter": "0.0.5",
+    "wdio-mocha-framework": "^0.2.11"
+  }
+}
