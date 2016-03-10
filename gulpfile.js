@@ -8,7 +8,7 @@ var fs = require('fs');
 var httpServer;
 
 gulp.task('start', function(done) {
-  var app = connect().use(serveStatic('test/fixtures'));
+  var app = connect().use(serveStatic('site'));
   httpServer = http.createServer(app).listen(9000, done);
 });
 
