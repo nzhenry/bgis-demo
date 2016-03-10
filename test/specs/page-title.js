@@ -6,7 +6,7 @@ describe('page title', function() {
       .url('/')
       .getTitle()
       .then(function(title) {
-        assert.equal(title, 'End-to-End Testing');
+        assert.equal(title, 'Brookfield Global Integrated Solutions North America');
       });
   });
 });
