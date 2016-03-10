@@ -13,7 +13,7 @@ gulp.task('start', function(done) {
 });
 
 gulp.task('test', function() {
-	var dir = './test_reports/bgis';
+	var dir = './test_reports';
 	if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
 	}
