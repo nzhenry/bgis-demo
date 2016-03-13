@@ -23,4 +23,6 @@ stop-containers:
 	@docker stop bgis-tmp || true
 	@docker stop bgis-selenium-server || true
 deploy:
-	docker run -d --name bgis -e VIRTUAL_HOST=bgis.livehen.com -e VIRTUAL_PORT=9000 bgis-img
+	@docker stop bgis || true
+	@docker rm bgis || true
+	@docker run -d --name bgis -e VIRTUAL_HOST=bgis.livehen.com -e VIRTUAL_PORT=9000 bgis-img
