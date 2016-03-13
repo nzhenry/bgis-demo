@@ -1,15 +1,14 @@
-full: clean build run-app run-tests cleanup
+ci: remove-containers build-image startup-app run-tests remove-unused-images stop-containers
 
-clean:
-	@docker stop bgis-test || true
-	@docker stop bgis-tmp || true
-	@docker stop bgis-selenium-server || true
+cd: ci deploy
+
+remove-containers:	
 	@docker rm bgis-test || true
 	@docker rm bgis-tmp || true
 	@docker rm bgis-selenium-server || true
-build:
+build-image:
 	@docker build -t bgis-img .
-run-app:
+startup-app:
 	@docker run -d	--name bgis-tmp bgis-img
 run-tests:
 	@docker run -d --name bgis-selenium-server --link bgis-tmp selenium/standalone-firefox
@@ -17,8 +16,11 @@ run-tests:
 	@docker exec bgis-test npm test || true
 	@rm test_report.xml || true
 	@docker exec bgis-test bash -c 'cat test_reports/*' >> test_report.xml
-cleanup:
+remove-unused-images:
 	@docker rmi $$(docker images -q) || true
+stop-containers:
 	@docker stop bgis-test || true
 	@docker stop bgis-tmp || true
 	@docker stop bgis-selenium-server || true
+deploy:
+	docker run -d --name bgis -e VIRTUAL_HOST=bgis.livehen.com -e VIRTUAL_PORT=9000 bgis-img
