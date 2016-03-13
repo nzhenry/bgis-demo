@@ -14,8 +14,7 @@ run-tests:
 	@docker run -d --name bgis-selenium-server --link bgis-tmp selenium/standalone-firefox
 	@docker run -dit --name bgis-test --link bgis-selenium-server bgis-img bash
 	@docker exec bgis-test npm test || true
-	@rm test_report.xml || true
-	@docker exec bgis-test bash -c 'cat test_reports/*.xml' >> test_report.xml
+	@docker exec bgis-test bash -c 'cat test_reports/*.xml' > test_report.xml
 remove-unused-images:
 	@docker rmi $$(docker images -q) || true
 stop-containers:
